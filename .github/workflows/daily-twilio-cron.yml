@@ -15,5 +15,6 @@ jobs:
           curl -X POST 'https://api.twilio.com/2010-04-01/Accounts/${{ secrets.TWILIO_ACCOUNT_SID }}/Messages.json' \
                --data-urlencode 'To=whatsapp:${{ secrets.TWILIO_TO }}' \
                --data-urlencode 'From=whatsapp:${{ secrets.TWILIO_FROM }}' \
-               --data-urlencode 'Body=Good morning' \
+               --data-urlencode 'ContentSid=${{ secrets.CONTENT_SID }}'
+               --data-urlencode ContentVariables={"1":"123456"} \
                -u ${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}
