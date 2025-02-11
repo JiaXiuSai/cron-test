@@ -1,20 +1,16 @@
 name: Daily Twilio Message
-
 on:
   schedule:
     - cron: "0 2 * * *"
   workflow_dispatch:
-
 jobs:
   send_twilio_message:
     runs-on: ubuntu-latest
-
     steps:
       - name: Send WhatsApp Message via Twilio
         run: |
           curl -X POST 'https://api.twilio.com/2010-04-01/Accounts/${{ secrets.TWILIO_ACCOUNT_SID }}/Messages.json' \
-               --data-urlencode 'To=whatsapp:${{ secrets.TWILIO_TO }}' \
-               --data-urlencode 'From=whatsapp:${{ secrets.TWILIO_FROM }}' \
-               --data-urlencode 'ContentSid=${{ secrets.CONTENT_SID }}'
-               --data-urlencode 'ContentVariables={"1":"123456"}' \
+               --data-urlencode 'To=${{ secrets.TWILIO_TO }}' \
+               --data-urlencode 'From=${{ secrets.TWILIO_FROM }}' \
+               --data-urlencode 'Body=Good morning' \
                -u ${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}
