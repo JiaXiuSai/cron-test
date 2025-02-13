@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Call Strapi API
         run: |
-          curl -X POST "${{ secrets.STRAPI_INSTANCE }}/api/customers/send-notification" \
+          curl -X POST "${{ secrets.STRAPI_INSTANCE }}/api/customers/send-notifications" \
                -H "Authorization: Bearer ${{ secrets.STRAPI_KEY }}" \
                -H "Content-Type: application/json" \
                -d '{}'
