@@ -1,0 +1,17 @@
+name: Send Notification to Strapi
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"  # Runs daily at 12:00 UTC
+
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Strapi API
+        run: |
+          curl -X POST "${{ secrets.STRAPI_INSTANCE }}/api/customers/send-notification" \
+               -H "Authorization: Bearer ${{ secrets.STRAPI_KEY }}" \
+               -H "Content-Type: application/json" \
+               -d '{}'
